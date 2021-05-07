@@ -4,6 +4,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 No diretório do projeto, você pode executar:
 
+### `npm install`
+
+Execute esse comando para instalar todas as dependências da aplicação.
+
 ### `npm start`
 
 Executa o aplicativo no modo de desenvolvimento.<br />
