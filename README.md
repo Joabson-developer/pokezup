@@ -44,17 +44,16 @@ Você pode aprender mais no [Create React App documentation](https://facebook.gi
 
 Para aprender React, verifique o [React documentation](https://reactjs.org/).
 
-
 ### Configuração avançada
 
-Esta seção mudou para aqui: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Esta seção mudou para aqui: [advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
 ### Desenvolvimento
 
-Esta seção mudou para aqui: https://facebook.github.io/create-react-app/docs/deployment
+Esta seção mudou para aqui: [deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
 ### `npm run build` falha em diminuir
 
-Esta seção mudou para aqui: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Esta seção mudou para aqui: [npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 
