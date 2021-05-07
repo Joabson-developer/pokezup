@@ -1,7 +1,7 @@
 <img src="https://joabson-developer.github.io/pokezup/public/logo512.png" alt="Logo da PokeZup" width="150" height="150">
 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Essa pokezup foi criada com React: [Create React App](https://github.com/facebook/create-react-app).
 
 # Instalação
 
