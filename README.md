@@ -1,4 +1,4 @@
-<img src="https://joabson-developer.github.io/pokezup.io/public/logo512.png" alt="Logo da PokeZup" width="150" height="150">
+<img src="https://github.com/Joabson-developer/pokezup.io/blob/main/public/logo512.png" alt="Logo da PokeZup" width="150" height="150">
 
 
 Essa pokezup foi criada com React: [Create React App](https://github.com/facebook/create-react-app).
