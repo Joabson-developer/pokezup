@@ -1,16 +1,17 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState } from "react";
-import { IconButton, Button, Typography, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Slider, Avatar, CircularProgress, Container, AppBar, Toolbar} from "@material-ui/core";
-import {  withStyles, makeStyles } from "@material-ui/core/styles";
+import { IconButton, Typography, Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, Avatar, CircularProgress, Container, AppBar, Toolbar} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import { blue } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import HomeIcon from '@material-ui/icons/Home';
 import { toFirstCharUppercase } from "./constants";
+import Stats from './stats';
+
 import axios from "axios";
 
 import clsx from 'clsx';
 
-
+// Estilização dos componentes
 const useStyles = makeStyles((theme) => ({
   container:{    
     display: 'flex',
@@ -18,14 +19,19 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-around',
     overflow: 'hidden',
   },
+  title:{
+    cursor: 'pointer'
+  },
+  topMenu: {
+    marginBottom: '25px'
+  },
   root: {
     minWidth: 400,
     maxWidth: 1200,
   },
   media: {
     height: 0,
-    paddingTop: '100%', // 16:9
-    backgroundPosition: 'unset'
+    paddingTop: '60%',
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -45,8 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
+// Criação dos elemetos da aplicação
 const Pokemon = (props) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -55,6 +60,7 @@ const Pokemon = (props) => {
   const { idPokemon } = params;
   const [pokemon, setPokemon] = useState(undefined);
 
+  // Requisição na api pokeapi.co pelo id do pokemon
   useEffect(() => {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/${idPokemon}/`)
@@ -67,73 +73,63 @@ const Pokemon = (props) => {
       });
   }, [idPokemon]);
 
+  // Cria o card para visualização dos dados do pokemon
   const generatePokemonJSX = (pokemon) => {
-    const { name, id, species, height, weight, types, sprites, stats } = pokemon;
+    const { name, id, height, weight, types, stats } = pokemon;
     const fullImageUrl = `https://pokeres.bastionbot.org/images/pokemon/${id}.png`;
-    const { front_default } = sprites;
+
+    // Seta o tipo do pokemon
     const typeBR = `Tipo: ${types[0].type.name}`
+    // Seta o tamanho do pokemon em cm
     const heightBR = `${height * 10} cm`
+    // Seta o peso do pokemon em Kg
     const weightBR = `${weight / 10} Kg`
     
-    const textHP = stats[0].stat.name
-    const valueHP = stats[0].base_stat
-    const textAttack = stats[1].stat.name
-    const valueAttack = stats[1].base_stat
-    const textDefense = stats[2].stat.name
-    const valueDefense = stats[2].base_stat
-    const textSpecialAttack = stats[3].stat.name
-    const valueSpecialAttack = stats[3].base_stat
-    const textSpecialDefense = stats[4].stat.name
-    const valueSpecialDefense = stats[4].base_stat
-    const textSpeed = stats[5].stat.name
-    const valueSpeed = stats[5].base_stat
+    // Define o título da página
+    document.title = `PokeZupe | ${toFirstCharUppercase(name)}`
 
+    // Habilita a visão dos sliders. default = false
     const handleExpandClick = () => {
       setExpanded(!expanded);
     };
-    function valuetext(value) {
-      return `${value}`;
+    
+    // Recria um novo objeto para os sliders
+    const statsNew = stats.reduce((acc, type)=>{
+      acc.push({name: type.stat.name, value: type.base_stat})
+      return acc
+    },[])
+
+    // Função cria os sliders com seus respectivos valores
+    function generate(obj) {
+      return obj.map((item) =>
+        React.cloneElement(<Stats id={item.name} typeAbiliity={item.name} level={item.value} />, {
+          key: item,
+        }),
+      );
     }
-    const PrettoSlider = withStyles({
-      root: {
-        color: '#52af77',
-        height: 8,
-      },
-      thumb: {
-        height: 24,
-        width: 24,
-        backgroundColor: '#fff',
-        border: '2px solid currentColor',
-        marginTop: -8,
-        marginLeft: -12,
-        '&:focus, &:hover, &$active': {
-          boxShadow: 'inherit',
-        },
-      },
-      active: {},
-      valueLabel: {
-        left: 'calc(-50% + 4px)',
-      },
-      track: {
-        height: 8,
-        borderRadius: 4,
-      },
-      rail: {
-        height: 8,
-        borderRadius: 4,
-      },
-    })(Slider);
-  
+    
     return (
+      <>      
+      <AppBar className={classes.topMenu} position="sticky">
+        <Toolbar>
+          <Typography className={classes.title} onClick={() => history.push("/pokezup")} variant="h6" noWrap>
+            PokeZup 
+          </Typography>   
+          <Typography variant="h6" noWrap>
+             {'⠀|⠀'}{toFirstCharUppercase(name)}
+          </Typography>  
+        </Toolbar>
+      </AppBar>
+
       <Container className={classes.container}>
         <Card className={classes.root}>
           <CardHeader
             avatar={
-              <Avatar className={classes.avatar} onClick={() => history.push("/")}>{name.toUpperCase().substring(0, 2)}</Avatar>
+              <Avatar className={classes.avatar} onClick={() => history.push("/pokezup")}>{name.toUpperCase().substring(0, 2)}</Avatar>
             }
             action={
               <IconButton aria-label="settings">
-                <HomeIcon onClick={() => history.push("/")}/>
+                <HomeIcon onClick={() => history.push("/pokezup")}/>
               </IconButton>
             }
             title={toFirstCharUppercase(name)}
@@ -163,53 +159,29 @@ const Pokemon = (props) => {
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
-              <Typography>Detalhes</Typography >
+              <Typography variant="body1" color="textSecondary" component="p">Estatísticas</Typography >
+              <hr />
+              <br />
               
-              <Typography id="hp_slide" gutterBottom>
-                {textHP} | {valueHP}
-              </Typography>
-              <PrettoSlider valueLabelDisplay="auto" aria-label="hp_slide" defaultValue={valueHP} disable />
-              
-              <Typography id="attack_slide" gutterBottom>
-                {textAttack} | {valueAttack}
-              </Typography>
-              <PrettoSlider valueLabelDisplay="auto" aria-label="attack_slide" defaultValue={valueAttack} disable />
-   
-              <Typography id="defense_slide" gutterBottom>
-                {textDefense} | {valueDefense}
-              </Typography>
-              <PrettoSlider valueLabelDisplay="auto" aria-label="defense_slide" defaultValue={valueDefense} disable />
- 
-              <Typography id="specialAtack_slide" gutterBottom>
-                {textSpecialAttack} | {valueSpecialAttack}
-              </Typography>
-              <PrettoSlider valueLabelDisplay="auto" aria-label="specialAtack_slide" defaultValue={valueSpecialAttack} disable />
- 
-              <Typography id="specialDefense_slide" gutterBottom>
-                {textSpecialDefense} | {valueSpecialDefense}
-              </Typography>
-              <PrettoSlider valueLabelDisplay="auto" aria-label="specialDefense_slide" defaultValue={valueSpecialDefense} disable />
+              {generate(statsNew)}
 
-              <Typography id="speed_slide" gutterBottom>
-                {textSpeed} | {valueSpeed}
-              </Typography>
-              <PrettoSlider valueLabelDisplay="auto" aria-label="speed_slide" defaultValue={valueSpeed} disable />
-             
             </CardContent>
           </Collapse>
         </Card>
       </Container>
+      <br />
+      </>
     );
   }
   
 
 
-
+  // Validação caso o pokemon não exista
   return (
     <>
       {pokemon === undefined && <CircularProgress />}
       {pokemon !== undefined && pokemon && generatePokemonJSX(pokemon)}
-      {pokemon === false && <Typography> Pokemon not found</Typography>}
+      {pokemon === false && <Typography> Esse pokemon não existe!</Typography>}
 
     </>
   );

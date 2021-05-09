@@ -74,13 +74,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
+// Criação dos elemetos da aplicação
 const Pokedex = (props) => {
   const classes = useStyles();
   const { history } = props;
   const [pokemonData, setPokemonData] = useState({});
   const [filter, setFilter] = useState("");
 
+  // Requisição na api pokeapi.co com os 150 primeiros pokemons
   useEffect(() => {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon?limit=150`)
@@ -99,10 +100,12 @@ const Pokedex = (props) => {
       });
   }, []);
 
+  // Captura os dados do input para filtrar o(s) pokemon(s)
   const handleSearchChange = (e) => {
     setFilter(e.target.value);
   };
   
+  // Clona o elemento para montagem da lista
   function generate(element) {
     return [0].map((value) =>
       React.cloneElement(element, {
@@ -111,8 +114,14 @@ const Pokedex = (props) => {
     );
   }
 
-  const getPokemonCard = (idPokemon) => {
+  //Cria a listagem dos pokemons
+  const getPokemonList = (idPokemon) => {
     const { id, name, sprite } = pokemonData[idPokemon];
+
+    // Seta o titulo da página
+    document.title = `PokeZupe | Home`
+
+    // Retorna a lista de pokemons
     return (
       <Container className={classes.container}>
         <Grid item xs={12} lg={6} md={8} sm={10}>
@@ -120,8 +129,8 @@ const Pokedex = (props) => {
            <List>
               {generate(
                 <ListItem>
-                  <ListItemAvatar>
-                    <Avatar className={classes.pointer} alt={toFirstCharUppercase(name)} src={sprite} onClick={() => history.push(`/${id}`)}/>
+                  <ListItemAvatar onClick={() => history.push(`/${id}`)}>
+                    <Avatar className={classes.pointer} alt={toFirstCharUppercase(name)} src={sprite}/>
                   </ListItemAvatar>
                   <ListItemText className={classes.pointer}
                     primary={id + '. ' + toFirstCharUppercase(name)}
@@ -141,6 +150,7 @@ const Pokedex = (props) => {
     );
   };
 
+  // Menu de busca
   return (
     <>
       <AppBar className={classes.topMenu} position="sticky">
@@ -169,7 +179,7 @@ const Pokedex = (props) => {
           {Object.keys(pokemonData).map(
             (idPokemon) =>
               pokemonData[idPokemon].name.includes(filter) &&
-              getPokemonCard(idPokemon)
+              getPokemonList(idPokemon)
           )}
         </Grid>
       ) : (
