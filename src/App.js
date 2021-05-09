@@ -6,7 +6,7 @@ import { Route, Switch } from "react-router-dom";
 const App = () => (
   <Switch>
     <Route exact path="/" render={(props) => <Pokedex {...props} />} />
-    <Route exact path="/pokezup" render={(props) => <Pokedex {...props} />} />
+    <Route exact path="/pokezup.io" render={(props) => <Pokedex {...props} />} />
     <Route
       exact
       path="/:idPokemon"
