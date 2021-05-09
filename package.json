@@ -2,7 +2,7 @@
   "name": "pokezup",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://joabson-developer.github.io/pokezup.io/",
+  "homepage": "https://joabson-developer.github.io/pokezup/",
   "dependencies": {
     "@material-ui/core": "^4.9.10",
     "@material-ui/icons": "^4.9.1",
