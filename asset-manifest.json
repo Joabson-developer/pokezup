@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/pokezup.io/static/js/main.0aa73136.chunk.js",
-    "main.js.map": "/pokezup.io/static/js/main.0aa73136.chunk.js.map",
-    "runtime-main.js": "/pokezup.io/static/js/runtime-main.64a82032.js",
-    "runtime-main.js.map": "/pokezup.io/static/js/runtime-main.64a82032.js.map",
-    "static/js/2.9be935b6.chunk.js": "/pokezup.io/static/js/2.9be935b6.chunk.js",
-    "static/js/2.9be935b6.chunk.js.map": "/pokezup.io/static/js/2.9be935b6.chunk.js.map",
-    "index.html": "/pokezup.io/index.html",
-    "precache-manifest.c103e61e3277c70e8b512d0bd6b28225.js": "/pokezup.io/precache-manifest.c103e61e3277c70e8b512d0bd6b28225.js",
-    "service-worker.js": "/pokezup.io/service-worker.js",
-    "static/js/2.9be935b6.chunk.js.LICENSE.txt": "/pokezup.io/static/js/2.9be935b6.chunk.js.LICENSE.txt"
+    "main.js": "/pokezup/static/js/main.0224b3b1.chunk.js",
+    "main.js.map": "/pokezup/static/js/main.0224b3b1.chunk.js.map",
+    "runtime-main.js": "/pokezup/static/js/runtime-main.60aef534.js",
+    "runtime-main.js.map": "/pokezup/static/js/runtime-main.60aef534.js.map",
+    "static/js/2.9be935b6.chunk.js": "/pokezup/static/js/2.9be935b6.chunk.js",
+    "static/js/2.9be935b6.chunk.js.map": "/pokezup/static/js/2.9be935b6.chunk.js.map",
+    "index.html": "/pokezup/index.html",
+    "precache-manifest.cc3dac9b88c449d4e1b50bc923a0f5e0.js": "/pokezup/precache-manifest.cc3dac9b88c449d4e1b50bc923a0f5e0.js",
+    "service-worker.js": "/pokezup/service-worker.js",
+    "static/js/2.9be935b6.chunk.js.LICENSE.txt": "/pokezup/static/js/2.9be935b6.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.64a82032.js",
+    "static/js/runtime-main.60aef534.js",
     "static/js/2.9be935b6.chunk.js",
-    "static/js/main.0aa73136.chunk.js"
+    "static/js/main.0224b3b1.chunk.js"
   ]
 }
