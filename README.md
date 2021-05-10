@@ -5,7 +5,7 @@ Essa pokezup foi criada com React: [Create React App](https://github.com/faceboo
 
 ### Link GH-PAGES
 
-Clique aqui para acessar: ==> [POKEZUP GH-PAGES](https://github.com/facebook/create-react-app).
+Clique aqui para acessar: ==> [POKEZUP GH-PAGES](https://joabson-developer.github.io/pokezup/).
 
 # Instalação
 
