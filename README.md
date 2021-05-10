@@ -3,6 +3,10 @@
 
 Essa pokezup foi criada com React: [Create React App](https://github.com/facebook/create-react-app).
 
+### Link GH-PAGES
+
+Clique aqui para acessar: ==> [POKEZUP GH-PAGES](https://github.com/facebook/create-react-app).
+
 # Instalação
 
 No diretório do projeto, você pode executar:
